@@ -41,7 +41,7 @@ class PostController extends Controller
         $post->title = $validatedData['title'];
         $post->content = $validatedData['content'];
         $post->save();
-        return redirect()->route('post.index')->with('source', 'Post created successfully');
+        return redirect()->route('post.index')->with('success', 'Post created successfully');
     }
 
     /**
@@ -78,7 +78,7 @@ class PostController extends Controller
         $post->content = $validatedData['content'];
         $post->save();
 
-        return redirect()->route('post.index')->with('source', 'Post created successfully');
+        return redirect()->route('post.index')->with('success', 'Post updated successfully');
     }
 
     /**
@@ -88,6 +88,7 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $post->delete();
-        //
+        
+        return redirect()->route('post.index')->with('success', 'Post deleted successfully');
     }
 }
