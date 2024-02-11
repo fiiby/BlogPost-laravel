@@ -13,8 +13,8 @@ class PostController extends Controller
     public function index()
     {
         //same as select * from post in mysql
-        $posts = Post::all();   // eloquent way!
-        return view('post.index', compact('posts'));
+        $post = Post::all();   // eloquent way!
+        return view('post.index', compact('post'));
     }
 
     /**
@@ -22,7 +22,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        return view('post.create');
     }
 
     /**
@@ -30,7 +30,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validate req data
+        $validatedData = $request->validate([
+            'title'=>'required',
+            'content'=>'required'
+        ]);
+        // create a new post:
+        $post = new Post;
+        //Post::create($validatedData);
+        $post->title = $validatedData['title'];
+        $post->content = $validatedData['content'];
+        $post->save();
+        return redirect()->route('post.index')->with('source', 'Post created successfully');
     }
 
     /**
