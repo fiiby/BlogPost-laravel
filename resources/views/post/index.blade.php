@@ -7,35 +7,31 @@
     <title>Document</title>
 </head>
 
-<body>
-    <div>
-        <h1>Blog post</h1>
-        <input type="text" class="" placeholder="search tasks">
-    </div>
-    <br>
-    <div>
-        <a href="{{ route('post.create') }}" class="">Add Post</a>
-    </div>
+<body class="antialiased bg-gray-100">
 
-    <table class="">
-        <thead>
-            <tr>
-                <th class="">Title</th>
-                <th class="">Content</th>
-            </tr>
-        </thead>
-        <tbody>
+    <div class="container mx-auto py-8">
+        <h1 class="text-3xl font-bold mb-4">Blog post</h1>
+
+        <div class="flex justify-between mb-4">
+            <div>
+                <input type="text" class="border border-gray-300 p-2" placeholder="search tasks">
+            </div>
+            
+            <a href="{{ route('post.create') }}" class="">Add Post</a>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             @forelse ($post as $post)
-            <tr>
-                <td class="">{{ $post->title}}</td>
-                <td class="">{{ $post->content}}</td>
-            </tr>
-            @empty<tr>
-                <td>No posts found</td>
-            </tr>
-            @endforelse
-        </tbody>
-    </table>
+            <div class="bg-white rounded-lg shadow-md p-4">
+                <h2 class="text-xl font-bold mb-2"> {{ $post->title}}</h2>
+                <p class="">{{Str::limit($post->content, 100) }}</p>
+                <a href="{{ route('post.show', $post->id) }}" class="text-blue-500">More</a>
+                @empty<tr>
+                    <p>No posts found</p>
+                </tr>
+                @endforelse
+            </div>
+        </div>
 
 </body>
 
