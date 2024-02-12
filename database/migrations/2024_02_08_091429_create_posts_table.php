@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title'); // length by default 255
             $table->text('content');
             $table->timestamps();
         });
@@ -22,8 +22,10 @@ return new class extends Migration
     /**
      * Reverse the migrations.
      */
-    public function down(): void
+    public function down(): void   
     {
         Schema::dropIfExists('posts');
     }
 };
+
+// table names be in plural in artisan cmd
