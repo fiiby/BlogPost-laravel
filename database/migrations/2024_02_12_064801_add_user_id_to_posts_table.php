@@ -11,13 +11,10 @@ return new class extends Migration
      */
     public function up(): void    //up=insert
     {
-        Schema::table('post', function (Blueprint $table) {
+        Schema::table('posts', function (Blueprint $table) {
             $table->unsignedBigInteger('user_id')->after('id');
             //specify that the suer id column is a foreign key that references the id column
-            $table->foreign('user_id')
-            ->references('id')
-            ->on('users')
-            ->onDelete('cascade');
+            $table->foreign('user_id') ->references('id') ->on('users') ->constrained() ->onDelete('cascade');
         });
     }
 
@@ -26,8 +23,9 @@ return new class extends Migration
      */
     public function down(): void        //down=delete
     {
-        Schema::table('post', function (Blueprint $table) {
-            //
+        Schema::table('posts', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+            $table->dropColumn('user_id');
         });
     }
 };

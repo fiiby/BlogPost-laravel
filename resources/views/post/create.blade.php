@@ -15,12 +15,14 @@
                 <!-- content/title from store in PostController
                 -->
                 <br>
-                <textarea type="text" name="content" id="content" class=" from-input mt-1 block w-full"></textarea>
+                <textarea type="text" name="content" id="content" class="from-input mt-1 block w-full"></textarea>
 
             </div>
+
             <br>
             <div class="mb-4">
-                <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Post</button>
+                <a href="{{route('post.create', $post->id)  }}" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Post</a> 
+                <!-- // should direct to index -->
             </div>
         </form>
     </div>

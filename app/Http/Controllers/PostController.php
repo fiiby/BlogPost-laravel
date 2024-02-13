@@ -33,13 +33,15 @@ class PostController extends Controller
         //validate req data
         $validatedData = $request->validate([
             'title'=>'required',
-            'content'=>'required'
+            'content'=>'required',
+            'user_id'=>'required|exists:user,column'
         ]);
         // create a new post:
         $post = new Post;
         //Post::create($validatedData);
         $post->title = $validatedData['title'];
         $post->content = $validatedData['content'];
+        $post->user_id = $validatedData['user_id'];
         $post->save();
         return redirect()->route('post.index')->with('success', 'Post created successfully');
     }
@@ -70,12 +72,14 @@ class PostController extends Controller
         //validate teh req data
         $validatedData = $request->validate([
             'title' => 'required',
-            'content' => 'required'
+            'content' => 'required',
+            'user_id' =>'required'
         ]);
         // update post
         $post = Post::findOrFail($id);
         $post->title = $validatedData['title'];
         $post->content = $validatedData['content'];
+        $post->user_id = $validatedData['user_id'];
         $post->save();
 
         return redirect()->route('post.index')->with('success', 'Post updated successfully');

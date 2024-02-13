@@ -28,9 +28,9 @@
                 <p class="">{{Str::limit($post->content, 100) }}</p>
                 <a href="{{ route('post.show', $post->id) }}" class="text-blue-500">More</a>
             </div>
-                @empty<tr>
+
+                @empty
                     <p class="">No posts found</p>
-                </tr>
                 @endforelse
             </div>
         </div>

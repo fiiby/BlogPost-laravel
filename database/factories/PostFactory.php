@@ -18,6 +18,7 @@ class PostFactory extends Factory
     {
         return [
             // should return an array not a string
+            'user_id'=>\App\Models\User::factory(),
             'title'=>$this->faker->sentence,
             'content'=>$this->faker->paragraph(5),
             
