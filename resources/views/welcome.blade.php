@@ -24,7 +24,7 @@
                         <a class="nav-link" href="#">Blog</a>
                     </li>
                     <li class="nav-item">
-                        <!--  fix this route syntx <a class="nav-link" href={{ route('tasks.index)' }}>task</a> -->
+                        <a href={{ route('tasks.index)' }} class="nav-link">task</a>
                     </li>
 
                 </ul>
